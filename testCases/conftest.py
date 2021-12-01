@@ -15,6 +15,7 @@ def setup(browser):
     return driver
 
 
+
 def pytest_addoption(parser):
     parser.addoption("--browser")
 
@@ -22,3 +23,18 @@ def pytest_addoption(parser):
 @pytest.fixture()
 def browser(request):
     return request.config.getoption("--browser")
+
+
+#***************** generating pytest HTML reports *************
+
+# hook for adding information into html report
+def pytest_configure(config):
+    config._metadata['Project Name'] = 'nopCommerce Application'
+    config._metadata['Module Name'] = 'Customers'
+    config._metadata['Tester Name'] = 'Shahidul'
+
+#hook for modify/ delete environment into html report
+@pytest.mark.optionalhook
+def pytest_metadata(metadata):
+    metadata.pop('JAVA_HOME',None)
+    metadata.pop('Plugins', None)
