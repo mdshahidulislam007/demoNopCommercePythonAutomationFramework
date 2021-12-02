@@ -14,18 +14,18 @@ class Test_001_Login:
 
     logger = LogGen.loggen()
 
-    def test_homePageTitle(self, setup):
-        self.logger.info("hi")
-        self.driver = setup
-        self.driver.get(self.baseURL)
-        actual_title = self.driver.title
-        if actual_title == "Your store. Login":
-            assert True
-            self.driver.close()
-        else:
-            self.driver.save_screenshot(".\\Screenshots\\" + "test_HomePageTitle.png")
-            assert False
-            self.driver.close()
+    # def test_homePageTitle(self, setup):
+    #     self.logger.info("hi")
+    #     self.driver = setup
+    #     self.driver.get(self.baseURL)
+    #     actual_title = self.driver.title
+    #     if actual_title == "Your store. Login":
+    #         assert True
+    #         self.driver.close()
+    #     else:
+    #         self.driver.save_screenshot(".\\Screenshots\\" + "test_HomePageTitle.png")
+    #         assert False
+    #         self.driver.close()
 
     def test_login(self, setup):
 
@@ -39,6 +39,7 @@ class Test_001_Login:
         actual_title = self.driver.title
         if actual_title == "Dashboard / nopCommerce administration":
             assert True
+            self.lp.clickLogout()
             self.driver.close()
 
         else:
